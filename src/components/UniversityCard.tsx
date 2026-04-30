@@ -1,71 +1,32 @@
-import MetricsCards from "../components/MetricsCards";
-import ReferralDashboard from "../components/ReferralDashboard";
-import PopularDestinationsCard from "../components/PopularDestinationsCard";
-import UniversityCard from "../components/UniversityCard";
-import TrendCard from "../components/TrendCard";
-import { text, colors } from "../styles/tokens";
+import React from "react";
+import { getUniversityStats } from "../utils/analytics";
+import RankingCard from "./RankingCard";
+import cmuLogo from "../assets/cmu_logo.png";
+import msuLogo from "../assets/msu_logo.png";
+import uofmLogo from "../assets/UofM_logo.png";
+import wayneLogo from "../assets/wayne_logo.png";
 
-export default function Dashboard() {
+const logoMap: Record<string, string> = {
+  CMU: cmuLogo, MSU: msuLogo, UofM: uofmLogo, Wayne: wayneLogo,
+};
+
+const bookingRate = (u: { searches: number; bookings: number }) =>
+  u.searches ? (u.bookings / u.searches) * 100 : 0;
+
+export default function UniversityCard() {
+  const sorted = [...getUniversityStats()].sort((a, b) => bookingRate(b) - bookingRate(a));
+  const top = sorted[0];
+
   return (
-    <div
-      style={{
-        padding: "24px 24px",
-        maxWidth: "1400px",
-        margin: "0 auto",
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-      }}
-    >
-      <div style={{ marginBottom: 4 }}>
-        <div style={{ fontSize: 24, color: "#000", fontWeight: 700 }}>
-          Kamel Ride Growth Dashboard
-        </div>
-        <div style={{ fontSize: 14, color: "#8a7f73", marginTop: 4 }}>
-          Where to focus to increase bookings
-        </div>
-      </div>
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1.7fr 1fr",
-          gap: "16px",
-          alignItems: "stretch",
-        }}
-      >
-        <MetricsCards />
-        <TrendCard />
-      </div>
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1.7fr 1fr",
-          gap: "16px",
-          alignItems: "start",
-        }}
-      >
-        <ReferralDashboard />
-
-        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "12px",
-              background: colors.white,
-              border: "1px solid #e5e4e7",
-              borderRadius: 12,
-              padding: 16,
-            }}
-          >
-            <div style={text.cardHeader}>Where to Expand Next?</div>
-            <UniversityCard />
-            <PopularDestinationsCard />
-          </div>
-        </div>
-      </div>
-    </div>
+    <RankingCard
+      caption="Top universities to focus on based on conversion"
+      headline={`${top?.name} (${bookingRate(top).toFixed(0)}%)`}
+      rows={sorted.slice(0, 3).map(u => ({
+        key: u.name,
+        label: u.name,
+        stat: `${u.bookings} bookings • ${bookingRate(u).toFixed(0)}%`,
+        logo: logoMap[u.name],
+      }))}
+    />
   );
 }
