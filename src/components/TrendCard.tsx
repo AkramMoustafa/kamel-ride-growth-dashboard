@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { getDailyTrend, getTrendInsight, getDailyReferralRate } from "../utils/analytics";
 import { colors, font, fontSize, radius, text } from "../styles/tokens";
 
