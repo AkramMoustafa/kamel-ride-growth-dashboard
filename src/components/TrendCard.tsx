@@ -30,7 +30,7 @@ export default function TrendCard() {
   return (
     <div
       style={{
-        background: colors.cream,
+        background: colors.white,
         border: `1.5px solid ${colors.border}`,
         borderRadius: radius.xxl,
         overflow: "hidden",

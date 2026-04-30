@@ -1,104 +1,71 @@
-import React from "react";
-import { colors, font, radius, text } from "../styles/tokens";
-import { getUniversityStats } from "../utils/analytics";
+import MetricsCards from "../components/MetricsCards";
+import ReferralDashboard from "../components/ReferralDashboard";
+import PopularDestinationsCard from "../components/PopularDestinationsCard";
+import UniversityCard from "../components/UniversityCard";
+import TrendCard from "../components/TrendCard";
+import { text, colors } from "../styles/tokens";
 
-type University = {
-  name: string;
-  searches: number;
-  bookings: number;
-};
-
-const bookingRate = (u: University) =>
-  u.searches ? (u.bookings / u.searches) * 100 : 0;
-
-export default function UniversityCard() {
-  const data = getUniversityStats();
-
-  const sorted = [...data].sort(
-    (a, b) => bookingRate(b) - bookingRate(a)
-  );
-
-  const top = sorted[0];
-  const maxBookings = Math.max(...sorted.map(u => u.bookings), 1);
-
+export default function Dashboard() {
   return (
     <div
       style={{
-        background: colors.cream,
-        border: `1px solid ${colors.border}`,
-        borderRadius: radius.lg,
-        padding: 16,
+        padding: "24px 24px",
+        maxWidth: "1400px",
+        margin: "0 auto",
         display: "flex",
         flexDirection: "column",
-        gap: 12,
-        fontFamily: font.heading,
+        gap: "20px",
       }}
     >
-      {/* Top performer (simplified) */}
-{top && (
-  <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-  
-    <div style={text.caption}> Top universities to focus on based on conversion</div>
-   
-    <div style={{ ...text.heading, fontWeight: 700 }}>
-      <span style={{ color: colors.orange }}>
-        {top.name} ({bookingRate(top).toFixed(0)}%)
-      </span>
-    </div>
-  </div>
-)}
-      {/* Top 3 list */}
-      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-        {sorted.slice(0, 3).map((u, idx) => {
-          const rate = bookingRate(u);
-          const barWidth = `${(u.bookings / maxBookings) * 100}%`;
-
-          return (
-            <div key={u.name}>
-              {/* Row */}
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  marginBottom: 4,
-                }}
-              >
-                <div style={{ display: "flex", gap: 8 }}>
-                  <span style={text.caption}>{idx + 1}.</span>
-                  <span style={{ ...text.body, fontWeight: 600 }}>
-                    {u.name}
-                  </span>
-                </div>
-
-                <div style={text.caption}>
-                  {u.bookings} bookings • {rate.toFixed(0)}%
-                </div>
-              </div>
-
-              {/* Bar */}
-              <div
-                style={{
-                  height: 5,
-                  background: colors.border,
-                  borderRadius: 4,
-                }}
-              >
-                <div
-                  style={{
-                    height: "100%",
-                    width: barWidth,
-                    background: idx === 0 ? colors.orange : colors.searchBar,
-                    borderRadius: 4,
-                  }}
-                />
-              </div>
-            </div>
-          );
-        })}
+      <div style={{ marginBottom: 4 }}>
+        <div style={{ fontSize: 24, color: "#000", fontWeight: 700 }}>
+          Kamel Ride Growth Dashboard
+        </div>
+        <div style={{ fontSize: 14, color: "#8a7f73", marginTop: 4 }}>
+          Where to focus to increase bookings
+        </div>
       </div>
 
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1.7fr 1fr",
+          gap: "16px",
+          alignItems: "stretch",
+        }}
+      >
+        <MetricsCards />
+        <TrendCard />
+      </div>
 
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1.7fr 1fr",
+          gap: "16px",
+          alignItems: "start",
+        }}
+      >
+        <ReferralDashboard />
+
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "12px",
+              background: colors.white,
+              border: "1px solid #e5e4e7",
+              borderRadius: 12,
+              padding: 16,
+            }}
+          >
+            <div style={text.cardHeader}>Where to Expand Next?</div>
+            <UniversityCard />
+            <PopularDestinationsCard />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

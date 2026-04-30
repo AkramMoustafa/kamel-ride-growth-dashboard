@@ -7,7 +7,7 @@ import ReferralDashboard from "../components/ReferralDashboard"
 import PopularDestinationsCard from "../components/PopularDestinationsCard"
 import UniversityCard from "../components/UniversityCard"
 import TrendCard from  "../components/TrendCard"
-
+import {text, colors} from "../styles/tokens"
 export default function Dashboard() {
   return (
     <div
@@ -17,16 +17,16 @@ export default function Dashboard() {
         margin: "0 auto",
         display: "flex",
         flexDirection: "column",
-        gap: "16px", // slightly increased for spacing
+        gap: "20px", // slightly more breathing room
       }}
     >
 
       {/* ✅ HEADER */}
-      <div>
-        <div style={{ fontSize: 24, color: "#0e0e0e",fontWeight: 700 }}>
-          kamel Ride Growth Dashboard
+      <div style={{ marginBottom: 4 }}>
+        <div style={{ fontSize: 24, color: "#000", fontWeight: 700 }}>
+          Kamel Ride Growth Dashboard
         </div>
-        <div style={{ fontSize: 14, color: "#0e0e0e", marginTop: 4 }}>
+        <div style={{ fontSize: 14, color: "#8a7f73", marginTop: 4 }}>
           Where to focus to increase bookings
         </div>
       </div>
@@ -55,9 +55,35 @@ export default function Dashboard() {
       >
         <ReferralDashboard />
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <UniversityCard />
-          <PopularDestinationsCard />
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+
+
+
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: "12px",
+    background: colors.cream,
+    border: "1px solid #e5e4e7",
+    borderRadius: 12,
+    padding: 16,
+  }}
+>
+  {/* Section Title */}
+   <div style={text.cardHeader}>
+    Where to Expand Next?
+  </div>
+
+  {/* Universities */}
+  <UniversityCard />
+
+
+
+  {/* Locations */}
+  <PopularDestinationsCard />
+</div>
+
         </div>
       </div>
 
