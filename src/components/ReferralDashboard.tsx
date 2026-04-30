@@ -114,7 +114,7 @@ export default function ReferralDashboard() {
 
   return (
     <div style={{
-      background: colors.lightOrange,
+      background: colors.cream,
       borderRadius: radius.xxl,
       border: `1.5px solid ${colors.border}`,
       fontFamily: "'DM Sans', sans-serif",
@@ -132,7 +132,7 @@ export default function ReferralDashboard() {
   }}
 >
   <div>
-    <div style={text.cardHeader}>Referral Impact on Funnel</div>
+    <div style={text.cardHeader}>Referral Impact on Conversion</div>
 {(() => {
   const overallConversion =
     totalVisits ? (totalBookings / totalVisits) * 100 : 0;

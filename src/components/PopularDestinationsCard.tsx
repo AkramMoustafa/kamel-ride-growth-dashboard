@@ -19,7 +19,11 @@ const getBarColor = (d: Destination) => {
 export default function PopularDestinationsCard() {
   const data = getDemandByDestination();
 
-  const sorted = [...data].sort((a, b) => b.unmetDemand - a.unmetDemand);
+  const sorted = [...data].sort((a, b) => {
+  const scoreA = a.unmetDemand * a.count;
+  const scoreB = b.unmetDemand * b.count;
+  return scoreB - scoreA;
+});
   const top = sorted[0];
   const maxCount = Math.max(...sorted.map(d => d.count), 1);
 
@@ -37,18 +41,11 @@ export default function PopularDestinationsCard() {
       }}
     >
       {/* Header */}
-      {/* <div>
-        <div style={text.cardHeader}>Destination Demand</div>
-        <div style={text.hint}>
-          Search demand and conversion by destination
-        </div>
-      </div> */}
 
-      {/* Top destination (simplified) */}
 
 {top && (
   <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-    <div style={text.caption}> Top demand</div>
+    <div style={text.caption}> High-demand destinations where conversion is low, indicating opportunities to increase bookings.</div>
     <div style={{ ...text.heading, fontWeight: 700 }}>
       <span style={{ color: colors.orange }}>
       {top.destination} ({top.count} searches)
