@@ -2,7 +2,7 @@ import { getUniversityStats } from "../utils/analytics";
 import RankingCard from "./RankingCard";
 import cmuLogo from "../assets/cmu_logo.png";
 import msuLogo from "../assets/msu_logo.png";
-import uofmLogo from "../assets/UofM_logo.png";
+import uofmLogo from "../assets/UoFM_logo.png";
 import wayneLogo from "../assets/wayne_logo.png";
 
 const logoMap: Record<string, string> = {
