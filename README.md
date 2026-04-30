@@ -4,14 +4,14 @@
 Live Demo: https://kamel-dashboard.vercel.app
 
 ## Overview
-A dashboard that identifies where to focus efforts to maximize bookings by:
+A dashboard that collects events and identifies where to focus efforts to maximize bookings by:
 
 - Analyzing demand by tracking user search behaviour
 - Evaluating referral effectiveness by comparing referred vs organic (non-referred) user behavior
 - Identifying high-opportunity locations and universities based on demand and conversion patterns
 - Visualizing the full funnel from traffic to bookings to support decision-making
 
-The system collects user interactions as events, which serve as the primary source of data for all analytics and dashboard metrics.
+The system collects user interactions as events, which is the main source of data for all analytics and metrics.
 
 ## How does it help decision-making?
 This dashboard helps identify where to focus efforts to grow traction and improve conversion.
@@ -24,7 +24,7 @@ It allows the user to answer:
 - Where is demand high but conversion is low (shows an opportunity to improve performance)?
 
 ## Who is it for?
-An operations manager at Kamel Ride responsible for tracking bookings and customer demand to identify growth opportunities and improve revenue.
+An operations manager at Kamel Ride responsible for tracking bookings and customer demand to find opportunities for growth.
 
 ## Main Goal
 
@@ -38,7 +38,7 @@ An operations manager at Kamel Ride responsible for tracking bookings and custom
 - Is traffic increasing over time due to marketing efforts?
 - Are more visitors converting into bookings?
 
-## 📈 Traction Metrics
+## Traction Metrics
 - **Search Volume / Ride Views** → Customer demand  
 - **Bookings** → Actual growth  
 - **Conversion Rate** → Demand quality  
