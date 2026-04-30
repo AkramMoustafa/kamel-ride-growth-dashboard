@@ -1,4 +1,3 @@
-import React from "react";
 import { getUniversityStats } from "../utils/analytics";
 import RankingCard from "./RankingCard";
 import cmuLogo from "../assets/cmu_logo.png";

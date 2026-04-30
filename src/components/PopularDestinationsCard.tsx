@@ -1,4 +1,3 @@
-import React from "react";
 import { getDemandByDestination, getUniversityStats } from "../utils/analytics";
 import RankingCard from "./RankingCard";
 

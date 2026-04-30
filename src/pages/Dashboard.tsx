@@ -1,7 +1,3 @@
-// import UtilizationCard from './UtilizationCard'
-// import BookingConversionCard from './BookingConversionCard'
-// import PopularDestinationsCard from './PopularDestinationsCard'
-// import ConversionFunnel from "./ConversionFunnel";
 import MetricsCards from "../components/MetricsCards";
 import ReferralDashboard from "../components/ReferralDashboard"
 import PopularDestinationsCard from "../components/PopularDestinationsCard"

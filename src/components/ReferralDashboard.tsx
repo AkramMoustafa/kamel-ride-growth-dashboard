@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { getReferralStats, getReferralShare } from "../utils/analytics";
-import { colors, font, fontSize, radius, text } from "../styles/tokens";
+import { colors, fontSize, radius, text } from "../styles/tokens";
 const Arrow = () => (
   <div
     style={{
@@ -68,27 +68,6 @@ const Medal = ({ rank }: { rank: number }) => {
     </div>
   );
 };
-
-/* ── Funnel bar ─────────────────────────────────────────────── */
-const FunnelBar = ({ pct, highlight, delay }: { pct: number; highlight: boolean; delay: number }) => (
-  <div style={{
-    background: highlight ? "rgba(224,123,42,0.18)" : "#EDD9C0",
-    borderRadius: 99, height: 4, width: "100%", overflow: "hidden", marginTop: 12,
-  }}>
-    <div
-      className="rd-bar-fill"
-      style={{
-        height: "100%", borderRadius: 99,
-        background: highlight
-          ? colors.orange
-          : `linear-gradient(90deg, ${colors.orange}, #F5A623)`,
-        width: `${pct}%`,
-        animationDelay: `${delay}ms`,
-        boxShadow: highlight ? `0 0 8px rgba(224,123,42,0.4)` : "none",
-      }}
-    />
-  </div>
-);
 
 /* ── Main component ─────────────────────────────────────────── */
 export default function ReferralDashboard() {
@@ -222,7 +201,9 @@ export default function ReferralDashboard() {
                   background: colors.orange,
                   width: `${item.barPct}%`,
                 }}
+                
               />
+              
             </div>
           )}
 

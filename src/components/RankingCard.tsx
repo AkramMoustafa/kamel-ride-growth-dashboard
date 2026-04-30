@@ -1,4 +1,3 @@
-import React from "react";
 import { colors, font, radius, text } from "../styles/tokens";
 
 type Row = {
